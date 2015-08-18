@@ -1,0 +1,23 @@
+consul:
+    extends:
+        file: base.yml
+        service: consul
+
+ipfs0:
+    extends:
+        file: base.yml
+        service: ipfs
+    hostname: ipfs0
+    ports:
+    - 8080:8080
+    - 5001:5001
+
+ipfs1:
+    extends:
+        file: base.yml
+        service: ipfs
+    hostname: ipfs1
+    ports:
+    - 8081:8080
+
+  
