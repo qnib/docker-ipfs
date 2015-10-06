@@ -8,16 +8,27 @@ ipfs0:
         file: base.yml
         service: ipfs
     hostname: ipfs0
+    environment:
+    - SUPERVISOR_SKIP_SRV=ipfs
+    volumes:
+     - ./opt/qnib/ipfs/bin/:/opt/qnib/ipfs/bin/
     ports:
     - 8080:8080
     - 5001:5001
+    - 4001:4001
 
 ipfs1:
     extends:
         file: base.yml
         service: ipfs
     hostname: ipfs1
+    environment:
+    - SUPERVISOR_SKIP_SRV=ipfs
+    volumes:
+     - ./opt/qnib/ipfs/bin/:/opt/qnib/ipfs/bin/
+     - ./data/:/data/
     ports:
-    - 8081:8080
+     - 8080
+     - 5001
 
   

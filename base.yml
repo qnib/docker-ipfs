@@ -9,12 +9,13 @@ consul:
   privileged: true
 
 ipfs:
-   image: qnib/ipfs
-   environment:
+  image: qnib/ipfs
+  environment:
    - dc_name=dc1
-   dns: 127.0.0.1
-   volumes:
+  dns: 127.0.0.1
+  volumes:
    - /data/
-   ports:
+  ports:
    - 5001
    - 8080
+  privileged: true
