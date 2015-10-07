@@ -11,8 +11,6 @@ ipfs0:
     environment:
     - SUPERVISOR_SKIP_SRV=ipfs
     - SUPERVISOR_START_EXTERNAL=/opt/qnib/ipfs/bin/start_ipfs.sh
-    volumes:
-     - ./opt/qnib/ipfs/bin/:/opt/qnib/ipfs/bin/
     ports:
     - 8080:8080
     - 5001:5001
@@ -25,9 +23,7 @@ ipfs1:
     hostname: ipfs1
     environment:
     - SUPERVISOR_SKIP_SRV=ipfs
-    volumes:
-     - ./opt/qnib/ipfs/bin/:/opt/qnib/ipfs/bin/
-     - ./data/:/data/
+    - SUPERVISOR_START_EXTERNAL=/opt/qnib/ipfs/bin/start_ipfs.sh
     ports:
      - 8080
      - 5001
