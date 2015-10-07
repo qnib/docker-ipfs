@@ -10,6 +10,7 @@ ipfs0:
     hostname: ipfs0
     environment:
     - SUPERVISOR_SKIP_SRV=ipfs
+    - SUPERVISOR_START_EXTERNAL=/opt/qnib/ipfs/bin/start_ipfs.sh
     volumes:
      - ./opt/qnib/ipfs/bin/:/opt/qnib/ipfs/bin/
     ports:
