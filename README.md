@@ -20,9 +20,12 @@ Master is using the ipfs-version `0.3.5` (which identifies itself as `0.3.4` - [
 
 Higher version do not work as expected since, they do not provide NODE INFO.
 ```
-$ docker-compose up -d
+docker-ipfs (master) $ git checkout 0.3.6
+docker-ipfs (0.3.6) $ docker-compose up -d
 Creating dockeripfs_consul_1...
 Creating dockeripfs_ipfs0_1...
 Creating dockeripfs_ipfs1_1...
 ```
+Results in:
+![](pics/webui_0.3.6.png)
 
