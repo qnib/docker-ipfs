@@ -9,7 +9,7 @@ consul:
   privileged: true
 
 ipfs:
-  image: qnib/ipfs
+  image: qnib/ipfs:0.3.6
   environment:
    - dc_name=dc1
   dns: 127.0.0.1
