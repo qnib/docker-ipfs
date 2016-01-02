@@ -32,8 +32,5 @@ ipfs1:
      - ./data/:/data/
     links:
      - consul:consul
-    ports:
-     - 8080
-     - 5001
 
   
