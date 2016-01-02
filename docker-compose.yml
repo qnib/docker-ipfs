@@ -10,9 +10,8 @@ ipfs0:
     hostname: ipfs0
     container_name: ipfs0
     environment:
-    - SUPERVISOR_SKIP_SRV=ipfs
-    volumes:
-     - ./opt/qnib/ipfs/bin/:/opt/qnib/ipfs/bin/
+     - SUPERVISOR_SKIP_SRV=ipfs
+     - SUPERVISOR_START_EXTERNAL=/opt/qnib/ipfs/bin/start_ipfs.sh
     links:
      - consul:consul
     ports:
@@ -27,11 +26,14 @@ ipfs1:
     hostname: ipfs1
     container_name: ipfs1
     environment:
-    - SUPERVISOR_SKIP_SRV=ipfs
+     - SUPERVISOR_SKIP_SRV=ipfs
+     - SUPERVISOR_START_EXTERNAL=/opt/qnib/ipfs/bin/start_ipfs.sh
     volumes:
-     - ./opt/qnib/ipfs/bin/:/opt/qnib/ipfs/bin/
      - ./data/:/data/
     links:
      - consul:consul
+    ports:
+     - 8080
+     - 5001
 
   

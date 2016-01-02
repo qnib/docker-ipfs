@@ -13,13 +13,19 @@ Creating dockeripfs_ipfs0_1...
 Creating dockeripfs_ipfs1_1...
 ```
 
-#### Init ipfs0
-[root@ipfs0 /]# cd /data/
-[root@ipfs0 data]# ipfs init
-initializing ipfs node at /root/.ipfs
-generating 2048-bit RSA keypair...done
-peer identity: QmRBD3uQAbpokYhdAiacLoHPvFPM53CaFRGYMZLVagEQH2
-to get started, enter:
+After a couple of seconds the WebUI is accessible under `<docker_host>:5001/webui/` which will be forwarded to `<docker_host>:5001/ipfs/<hash_of_the_node>`.
+![](pics/webui_0.3.5.png)
 
-	ipfs cat /ipfs/QmVtU7ths96fMgZ8YSZAbKghyieq7AjxNdcqyVzxTt3qVe/readme
-[root@ipfs0 data]#   
+Master is using the ipfs-version `0.3.5` (which identifies itself as `0.3.4` - [https://github.com/ipfs/go-ipfs/issues/1810](https://github.com/ipfs/go-ipfs/issues/1810)).
+
+Higher version do not work as expected since, they do not provide NODE INFO.
+```
+docker-ipfs (master) $ git checkout 0.3.6
+docker-ipfs (0.3.6) $ docker-compose up -d
+Creating dockeripfs_consul_1...
+Creating dockeripfs_ipfs0_1...
+Creating dockeripfs_ipfs1_1...
+```
+Results in:
+![](pics/webui_0.3.6.png)
+
