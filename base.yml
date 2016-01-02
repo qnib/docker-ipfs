@@ -3,9 +3,11 @@ consul:
   ports:
    - "8500:8500"
   environment:
-  - dc_name=dc1
+   - DC_NAME=dc1
+   - CONSUL_BOOTSTRAP=true
   dns: 127.0.0.1
   hostname: consul
+  container_name: consul
   privileged: true
 
 ipfs:
