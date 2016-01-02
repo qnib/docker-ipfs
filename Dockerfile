@@ -1,7 +1,6 @@
 FROM qnib/terminal
 
-ENV IPFS_VER=v0.3.10
-RUN curl -fsL https://gobuilder.me/get/github.com/ipfs/go-ipfs/cmd/ipfs/ipfs_${IPFS_VER}_linux-amd64.zip |bsdtar xf - -C /opt/ && \
+RUN curl -fsL https://gobuilder.me/get/github.com/ipfs/go-ipfs/cmd/ipfs/ipfs_release_linux-amd64.zip |bsdtar xf - -C /opt/ && \
     mv /opt/ipfs/ipfs /usr/local/bin && chmod +x /usr/local/bin/ipfs && rm -rf /opt/ipfs
 ADD etc/supervisord.d/ipfs.ini /etc/supervisord.d/
 RUN useradd ipfs 
