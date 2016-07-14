@@ -1,13 +1,16 @@
-consul:
+version: '2'
+services:
+  consul:
     extends:
         file: base.yml
         service: consul
 
-ipfs0:
+  ipfs0:
     extends:
         file: base.yml
         service: ipfs
     hostname: ipfs0
+    container_name: ipfs0
     environment:
     - SUPERVISOR_SKIP_SRV=ipfs
     - SUPERVISOR_START_EXTERNAL=/opt/qnib/ipfs/bin/start_ipfs.sh
@@ -16,11 +19,12 @@ ipfs0:
     - 5001:5001
     - 4001:4001
 
-ipfs1:
+  ipfs1:
     extends:
         file: base.yml
         service: ipfs
     hostname: ipfs1
+    container_name: ipfs1
     environment:
     - SUPERVISOR_SKIP_SRV=ipfs
     - SUPERVISOR_START_EXTERNAL=/opt/qnib/ipfs/bin/start_ipfs.sh
@@ -28,4 +32,7 @@ ipfs1:
      - 8080
      - 5001
 
+networks:
+  ipfs:
+    driver: bridge
   

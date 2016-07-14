@@ -1,21 +1,30 @@
-consul:
-  image: qnib/consul
-  ports:
-   - "8500:8500"
-  environment:
-  - dc_name=dc1
-  dns: 127.0.0.1
-  hostname: consul
-  privileged: true
+version: '2'
+services:
+  consul:
+    image: qnib/alpn-consul
+    hostname: consul
+    container_name: consul
+    networks:
+     - ipfs
+    ports:
+     - "8500:8500"
+    environment:
+     - DC_NAME=ipfs
+     - CONSUL_BOOTSTRAP=true
+    privileged: true
 
-ipfs:
-  image: qnib/ipfs
-  environment:
-   - dc_name=dc1
-  dns: 127.0.0.1
-  volumes:
-   - /data/
-  ports:
-   - 5001
-   - 8080
-  privileged: true
+  ipfs:
+    image: qnib/ipfs
+    networks:
+     - ipfs
+    dns: 
+     - consul
+    environment:
+     - DC_NAME=ipfs
+     - CONSUL_CLUSTER_IPS=consul
+    volumes:
+     - /data/
+    ports:
+     - 5001
+     - 8080
+    privileged: true
