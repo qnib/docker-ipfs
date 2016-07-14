@@ -12,12 +12,14 @@ services:
     hostname: ipfs0
     container_name: ipfs0
     environment:
-    - SUPERVISOR_SKIP_SRV=ipfs
-    - SUPERVISOR_START_EXTERNAL=/opt/qnib/ipfs/bin/start_ipfs.sh
+     - SUPERVISOR_SKIP_SRV=ipfs
+    # - SUPERVISOR_START_EXTERNAL=/opt/qnib/ipfs/bin/startsh
+    links:
+     - consul:consul
     ports:
-    - 8080:8080
-    - 5001:5001
-    - 4001:4001
+     - "8080:8080"
+     - "5001:5001"
+     - "4001:4001"
 
   ipfs1:
     extends:
@@ -26,11 +28,10 @@ services:
     hostname: ipfs1
     container_name: ipfs1
     environment:
-    - SUPERVISOR_SKIP_SRV=ipfs
-    - SUPERVISOR_START_EXTERNAL=/opt/qnib/ipfs/bin/start_ipfs.sh
-    ports:
-     - 8080
-     - 5001
+     - SUPERVISOR_SKIP_SRV=ipfs
+    # - SUPERVISOR_START_EXTERNAL=/opt/qnib/ipfs/bin/start.sh
+    links:
+     - consul:consul
 
 networks:
   ipfs:
