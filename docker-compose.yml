@@ -26,6 +26,10 @@ services:
     container_name: ipfs1
     links:
      - consul:consul
+    ports:
+     - 8080
+     - 5001
+     - 4001
 
 networks:
   ipfs:
