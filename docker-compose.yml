@@ -11,9 +11,6 @@ services:
         service: ipfs
     hostname: ipfs0
     container_name: ipfs0
-    environment:
-     - SUPERVISOR_SKIP_SRV=ipfs
-    # - SUPERVISOR_START_EXTERNAL=/opt/qnib/ipfs/bin/startsh
     links:
      - consul:consul
     ports:
@@ -27,13 +24,9 @@ services:
         service: ipfs
     hostname: ipfs1
     container_name: ipfs1
-    environment:
-     - SUPERVISOR_SKIP_SRV=ipfs
-    # - SUPERVISOR_START_EXTERNAL=/opt/qnib/ipfs/bin/start.sh
     links:
      - consul:consul
 
 networks:
   ipfs:
     driver: bridge
-  
