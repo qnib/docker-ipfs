@@ -22,6 +22,7 @@ services:
     environment:
      - DC_NAME=ipfs
      - CONSUL_CLUSTER_IPS=consul
+     - IPFS_BOOTSTRAP_RM_ALL=true
     volumes:
      - /data/
     ports:

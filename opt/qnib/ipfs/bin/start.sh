@@ -1,18 +1,24 @@
 #!/bin/bash
 
 LOG_FILE=/var/log/supervisor/ipfs.log
-export IPFS_LOGGING=debug
-IPFS_DATA=${IPFS_DATA-/data/}
+IPFS_DATA=${IPFS_DATA-/data/ipfs/}
 cd ${IPFS_DATA}
 ipfs init
-
 sleep 1
-ipfs bootstrap rm --all
+ipfs config Datastore.Path ${IPFS_DATA}
 
-# smart to open it up so bad...?
-ipfs config Addresses.Gateway /ip4/0.0.0.0/tcp/8080
-ipfs config Addresses.API /ip4/0.0.0.0/tcp/5001
-#ipfs swarm connect /ip4/104.236.176.52/tcp/4001/ipfs/qmsolnsgccfuzqjzradhn95w2crsfmzutddwp8hxahca9z
-ipfs config Datastore.Path /data/ipfs/
+if [ "X${IPFS_BOOTSTRAP_RM_ALL}" == "Xtrue" ];then
+    ipfs bootstrap rm --all
+fi
+for peer in $(echo ${IPFS_BOOTSTRAP_PEERS} |sed -e 's/,/ /g');do
+    ipfs bootstrap add ${peer}
+done
+
+if [ "X${IPFS_GATEWAY_ADDR}" != "X" ];then
+    ipfs config Addresses.Gateway ${IPFS_GATEWAY_ADDR}
+fi
+if [ "X${IPFS_API_ADDR}" != "X" ];then
+    ipfs config Addresses.API ${IPFS_API_ADDR}
+fi
 
 ipfs daemon --routing dht

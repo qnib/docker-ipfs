@@ -1,0 +1,40 @@
+{
+  "services": [
+    {
+        "id": "ipfs-webgui",
+        "name": "ipfs-webgui",
+        "tags": [],
+        "port": 5001,
+        "checks": [
+            {
+               "script": "/opt/qnib/ipfs/bin/check.sh webgui",
+               "interval": "5s"
+            }
+       ]
+    },
+    {
+        "id": "hdfs-datanode-ipc",
+        "name": "hdfs-datanode-ipc",
+        "tags": [],
+        "port": 50020,
+        "checks": [
+            {
+               "script": "/opt/qnib/hdfs/bin/check.sh dfs.datanode.ipc.address 50020",
+               "interval": "5s"
+            }
+       ]
+    },
+    {
+        "id": "hdfs-datanode-http",
+        "name": "hdfs-datanode-http",
+        "tags": [],
+        "port": 50075,
+        "checks": [
+            {
+               "script": "/opt/qnib/hdfs/bin/check.sh dfs.datanode.http.address 50075",
+               "interval": "5s"
+            }
+       ]
+    }
+  ]
+}

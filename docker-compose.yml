@@ -30,6 +30,8 @@ services:
      - 8080
      - 5001
      - 4001
+    environment:
+     - IPFS_BOOTSTRAP_PEERS=${IPFS_BOOTSTRAP_PEERS}
 
 networks:
   ipfs:
