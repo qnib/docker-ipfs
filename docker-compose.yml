@@ -14,9 +14,18 @@ services:
     links:
      - consul:consul
     ports:
-     - "8080:8080"
-     - "5001:5001"
+     - "8081:8081"
+     - "5002:5002"
      - "4001:4001"
+    environment:
+     - IPFS_BIND_IP=0.0.0.0
+     #- IPFS_API_ADDR=0.0.0.0
+     #- IPFS_GATEWAY_ADDR=0.0.0.0
+     - IPFS_BOOTSTRAP_RM_ALL=true
+     - GATEWAY_PORT=8081
+     - API_PORT=5002
+    volumes:
+     - ./data/:/input/
 
   ipfs1:
     extends:
@@ -27,10 +36,14 @@ services:
     links:
      - consul:consul
     ports:
-     - 8080
-     - 5001
+     - 18080:18080
+     - 15001:15001
      - 4001
     environment:
+     - GATEWAY_PORT=18080
+     - API_PORT=15001
+     - IPFS_BIND_IP=0.0.0.0
+     - IPFS_BOOTSTRAP_RM_ALL=true
      - IPFS_BOOTSTRAP_PEERS=${IPFS_BOOTSTRAP_PEERS}
 
 networks:
