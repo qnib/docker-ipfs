@@ -2,9 +2,9 @@ FROM qnib/alpn-consul
 
 #ENV IPFS_GATEWAY_ADDR=/ip4/0.0.0.0/tcp/8080
 #ENV IPFS_API_ADDR=/ip4/0.0.0.0/tcp/5001
-ENV IPFS_LOGGING=info \
-    GATEWAY_PORT=8080 \
-    API_PORT=
+ENV GATEWAY_PORT=8080 \
+    API_PORT=5001 \
+    IPFS_LOGGING=info
 
 VOLUME /data/ipfs/
 RUN wget -qO /usr/local/bin/ipfs https://github.com/qnib/go-ipfs/releases/download/0.4.5-pnet/ipfs-0.4.5-pnet_MuslLinux \
